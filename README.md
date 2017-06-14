@@ -46,7 +46,7 @@ $ make -j4
 
 Listed in relative order of importance
 
-- [ ] Implement cache flushing as per `cbr.c`, to remove instrumentation once a branch has
+- [x] Implement cache flushing as per `cbr.c`, to remove instrumentation once a branch has
       or has not been taken. This will hopefully speed up applications considerably.
 - [ ] We currently lock on all accesses to the hashtable, but instead we could construct
       a hashtable per thread to reduce lock contention if there exists any in a noticeable

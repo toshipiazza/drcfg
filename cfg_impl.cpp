@@ -49,3 +49,13 @@ construct_json()
     } else
         return construct_json_impl();
 }
+
+bool
+branch_present(uintptr_t src, uintptr_t trg)
+{
+    if (racy.get_value()) {
+        std::lock_guard<std::mutex> g(mtx);
+        return cbr[src].find(trg) != cbr[src].end();
+    } else
+        return cbr[src].find(trg) != cbr[src].end();
+}
