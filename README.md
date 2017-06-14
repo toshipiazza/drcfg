@@ -15,9 +15,6 @@ following:
 $ drrun -c ./libcfg.so -- target-program <args>
 ```
 
-<script type="text/javascript" src="https://asciinema.org/a/7ciqzh7rkmprinrv9q7vd0m6s.js"
-                                id="asciicast-7ciqzh7rkmprinrv9q7vd0m6s" async></script>
-
 # How to Build
 
 ```
