@@ -5,7 +5,7 @@ Constructs a CFG of the target program, without source. For motivation, see this
 post](https://tpiazza.me/posts/2016-11-04-dynamorio_cfg.html). This plugin implements the
 following:
 
-- intercepts control branch instructions (`cbr's`)
+- intercepts conditional branch instructions (`cbr's`)
 - intercepts control transfer instructions (`cti's`)
 - dumps output in json format
 
