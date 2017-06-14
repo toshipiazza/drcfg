@@ -1,0 +1,13 @@
+cmake_minimum_required (VERSION 3.0)
+project (cfg)
+
+add_library(cfg SHARED cfg.cpp)
+find_package(DynamoRIO)
+if (NOT DynamoRIO_FOUND)
+  message(FATAL_ERROR "DynamoRIO package required to build")
+endif()
+configure_DynamoRIO_client(cfg)
+use_DynamoRIO_extension(cfg "drreg")
+use_DynamoRIO_extension(cfg "drmgr")
+use_DynamoRIO_extension(cfg "drutil")
+use_DynamoRIO_extension(cfg "drx")
