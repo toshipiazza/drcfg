@@ -1,17 +1,13 @@
 #include "dr_api.h"
 #include "drmgr.h"
+#include "cfg_impl.h"
 
-#include "json.hpp"
 #include <iostream>
-#include <unordered_map>
-#include <unordered_set>
-
-using json = nlohmann::json;
-
-static std::unordered_map<uintptr_t, std::unordered_set<uintptr_t>> cbr;
 
 static void at_cti(uintptr_t src, uintptr_t targ)
-{ cbr[src].insert(targ); }
+{
+    safe_insert(src, targ);
+}
 
 static dr_emit_flags_t
 cti_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *instr,
@@ -42,7 +38,9 @@ cti_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
 
 static void
 taken_or_not(uintptr_t src, uintptr_t targ)
-{ cbr[src].insert(targ); }
+{
+    safe_insert(src, targ);
+}
 
 static dr_emit_flags_t
 cbr_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *instr,
@@ -80,16 +78,7 @@ cbr_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
 
 void dr_exit(void)
 {
-    json j;
-    std::transform(std::begin(cbr), std::end(cbr),
-                   std::back_inserter(j["branches"]),
-        [] (auto i) -> json {
-            return {
-                { "address", i.first  },
-                { "targets", i.second }
-            };
-        });
-    std::cout << std::setw(2) << j << std::endl;
+    std::cout << std::setw(2) << construct_json() << std::endl;
     drmgr_exit();
 }
 
