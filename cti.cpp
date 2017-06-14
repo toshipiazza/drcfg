@@ -1,6 +1,7 @@
 #include "dr_api.h"
 #include "cti.h"
 #include "cfg_impl.h"
+#include "app.h"
 
 #include <cstdint>
 
@@ -22,6 +23,8 @@ cti_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
         // to the original caller.
         return DR_EMIT_DEFAULT;
     }
+    if (app_should_ignore_tag(tag))
+        return DR_EMIT_DEFAULT;
 
     opnd_t target_opnd = instr_get_target(instr);
     if (opnd_is_reg(target_opnd) ||

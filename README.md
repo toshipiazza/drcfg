@@ -32,6 +32,6 @@ Listed in relative order of importance
 - [ ] We currently lock on all accesses to the hashtable, but instead we could construct
       a hashtable per thread to reduce lock contention if there exists any in a noticeable
       form. We would only have to lock on `event_thread_exit` to combine hashtables.
-- [ ] Optionally intercept only branches in main module (i.e. `-only_from_app`)
+- [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
 - [ ] Dump json to a file
 - [ ] Optionally dump YAML

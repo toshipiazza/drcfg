@@ -1,6 +1,7 @@
 #include "dr_api.h"
 #include "cbr.h"
 #include "cfg_impl.h"
+#include "app.h"
 
 #include <cstdint>
 
@@ -15,6 +16,8 @@ cbr_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
                           bool for_trace, bool translating, void *user_data)
 {
     if (!instr_is_cbr(instr))
+        return DR_EMIT_DEFAULT;
+    if (app_should_ignore_tag(tag))
         return DR_EMIT_DEFAULT;
 
     app_pc src = instr_get_app_pc(instr);
