@@ -4,7 +4,8 @@
 
 #include <cstdint>
 
-static void at_cti(uintptr_t src, uintptr_t targ)
+static void
+at_cti(uintptr_t src, uintptr_t targ)
 {
     safe_insert(src, targ);
 }
