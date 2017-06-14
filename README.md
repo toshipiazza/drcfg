@@ -12,8 +12,19 @@ following:
 # Usage
 
 ```
-$ drrun -c ./libcfg.so -- target-program <args>
-<snipped json output>
+$ drrun -c ./libcfg.so -- ../test/call.out
+{
+  "branches": [
+    <snip>
+    {
+      "address": 4194497,
+      "targets": [
+        4194500
+      ]
+    },
+    <snip>
+  ]
+}
 ```
 
 Options for `drcfg` are shown below:
@@ -46,3 +57,4 @@ Listed in relative order of importance
 - [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
 - [ ] Dump json to a file
 - [ ] Optionally dump YAML
+- [ ] Optionally instrument return cti's
