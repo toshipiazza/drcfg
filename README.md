@@ -13,6 +13,14 @@ following:
 
 ```
 $ drrun -c ./libcfg.so -- target-program <args>
+<snipped json output>
+```
+
+Options for `drcfg` are shown below:
+
+```
+-racy                [ false]  Perform racy hashtable insertion
+-only_from_app       [ false]  Only count app, not lib, instructions
 ```
 
 # How to Build
@@ -32,6 +40,9 @@ Listed in relative order of importance
 - [ ] We currently lock on all accesses to the hashtable, but instead we could construct
       a hashtable per thread to reduce lock contention if there exists any in a noticeable
       form. We would only have to lock on `event_thread_exit` to combine hashtables.
+      
+   Currently the only workaround for slow *singlethreaded* execution is to specify
+   `-racy` as an argument to the client.
 - [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
 - [ ] Dump json to a file
 - [ ] Optionally dump YAML
