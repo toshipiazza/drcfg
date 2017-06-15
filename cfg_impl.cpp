@@ -17,7 +17,7 @@ static std::mutex mtx;
 void
 safe_insert(uintptr_t src, uintptr_t trg)
 {
-    if (racy.get_value()) {
+    if (!racy.get_value()) {
         std::lock_guard<std::mutex> g(mtx);
         cbr[src].insert(trg);
     } else
@@ -42,7 +42,7 @@ construct_json_impl()
 json
 construct_json()
 {
-    if (racy.get_value()) {
+    if (!racy.get_value()) {
         std::lock_guard<std::mutex> g(mtx);
         return construct_json_impl();
     } else
@@ -52,7 +52,7 @@ construct_json()
 bool
 branch_present(uintptr_t src, uintptr_t trg)
 {
-    if (racy.get_value()) {
+    if (!racy.get_value()) {
         std::lock_guard<std::mutex> g(mtx);
         return cbr[src].find(trg) != cbr[src].end();
     } else
