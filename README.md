@@ -30,8 +30,10 @@ $ drrun -c ./libcfg.so -- ../test/call.out
 Options for `drcfg` are shown below:
 
 ```
--racy                [ false]  Perform racy hashtable insertion
--only_from_app       [ false]  Only count app, not lib, instructions
+ -no_cbr              [ false]  Don't count conditional branch instructions
+ -no_cti              [ false]  Don't count control transfer instructions
+ -racy                [ false]  Perform racy hashtable insertion
+ -only_from_app       [ false]  Only count app, not lib, instructions
 ```
 
 # How to Build
