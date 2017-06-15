@@ -4,9 +4,7 @@
 
 static droption_t<bool> only_from_app
 (DROPTION_SCOPE_CLIENT, "only_from_app", false,
- "Only count app, not lib, instructions",
- "Count only instructions in the application itself, ignoring instructions in "
- "shared libraries.");
+ "Only count app, not lib, instructions", "");
 static app_pc exe_start;
 
 void

@@ -9,8 +9,7 @@ using nlohmann::json;
 
 static droption_t<bool> racy
 (DROPTION_SCOPE_CLIENT, "racy", false,
- "Perform racy hashtable insertion",
- "Increases performance when target program doesn't use threads.");
+ "Perform racy hashtable insertion", "");
 
 static std::unordered_map<uintptr_t, std::unordered_set<uintptr_t>> cbr;
 static std::mutex mtx;

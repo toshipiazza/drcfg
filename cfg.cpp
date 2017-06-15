@@ -9,6 +9,14 @@
 #include <iostream>
 #include <iomanip>
 
+static droption_t<bool> no_cbr
+(DROPTION_SCOPE_CLIENT, "no_cbr", false,
+ "Don't count conditional branch instructions", "");
+
+static droption_t<bool> no_cti
+(DROPTION_SCOPE_CLIENT, "no_cti", false,
+ "Don't count control transfer instructions", "");
+
 void
 dr_exit(void)
 {
@@ -28,7 +36,9 @@ dr_client_main(client_id_t id, int argc, const char *argv[])
 
     app_init();
     drmgr_init();
-    drmgr_register_bb_instrumentation_event(NULL, cbr_event_app_instruction, NULL);
-    drmgr_register_bb_instrumentation_event(NULL, cti_event_app_instruction, NULL);
+    if (!no_cbr.get_value())
+        drmgr_register_bb_instrumentation_event(NULL, cbr_event_app_instruction, NULL);
+    if (!no_cti.get_value())
+        drmgr_register_bb_instrumentation_event(NULL, cti_event_app_instruction, NULL);
     dr_register_exit_event(dr_exit);
 }
