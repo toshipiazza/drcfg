@@ -50,12 +50,6 @@ Listed in relative order of importance
 
 - [x] Implement cache flushing as per `cbr.c`, to remove instrumentation once a branch has
       or has not been taken. This will hopefully speed up applications considerably.
-- [ ] We currently lock on all accesses to the hashtable, but instead we could construct
-      a hashtable per thread to reduce lock contention if there exists any in a noticeable
-      form. We would only have to lock on `event_thread_exit` to combine hashtables.
-      
-   Currently the only workaround for slow *singlethreaded* execution is to specify
-   `-racy` as an argument to the client.
 - [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
 - [ ] Dump json to a file
 - [ ] Optionally dump YAML
