@@ -17,6 +17,10 @@ cti_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
 {
     if (!instr_is_cti(instr))
         return DR_EMIT_DEFAULT;
+    if (instr_is_cbr(instr)) {
+        // we already handle cbr's, more efficiently
+        return DR_EMIT_DEFAULT;
+    }
     if (instr_is_return(instr)) {
         // TODO: checking returns could help construct a more complete CFG in the case
         // that we see obfuscated control flow, i.e. returning to a different place than
