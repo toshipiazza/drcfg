@@ -32,6 +32,7 @@ Options for `drcfg` are shown below:
 ```
  -no_cbr              [ false]  Don't count conditional branch instructions
  -no_cti              [ false]  Don't count control transfer instructions
+ -output              [    ""]  Output results to file
  -racy                [ false]  Perform racy hashtable insertion
  -only_from_app       [ false]  Only count app, not lib, instructions
 ```
@@ -51,6 +52,6 @@ Listed in relative order of importance
 - [x] Implement cache flushing as per `cbr.c`, to remove instrumentation once a branch has
       or has not been taken. This will hopefully speed up applications considerably.
 - [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
-- [ ] Dump json to a file
+- [x] Dump json to a file
 - [ ] Optionally dump YAML
 - [ ] Optionally instrument return cti's
