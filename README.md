@@ -30,11 +30,12 @@ $ drrun -c ./libcfg.so -- ../test/call.out
 Options for `drcfg` are shown below:
 
 ```
+ -only_from_app       [ false]  Only count app, not lib, instructions
+ -instrument_ret      [ false]  Count return instructions as control flow instructions
+ -racy                [ false]  Perform racy hashtable insertion
  -no_cbr              [ false]  Don't count conditional branch instructions
  -no_cti              [ false]  Don't count control transfer instructions
  -output              [    ""]  Output results to file
- -racy                [ false]  Perform racy hashtable insertion
- -only_from_app       [ false]  Only count app, not lib, instructions
 ```
 
 # How to Build
@@ -54,4 +55,4 @@ Listed in relative order of importance
 - [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
 - [x] Dump json to a file
 - [ ] Optionally dump YAML
-- [ ] Optionally instrument return cti's
+- [x] Optionally instrument return cti's

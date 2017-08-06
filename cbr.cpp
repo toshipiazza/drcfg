@@ -49,27 +49,21 @@ cbr_event_app_instruction(void *drcontext, void *tag, instrlist_t *bb, instr_t *
         instr_set_target(instr, opnd_create_instr(label));
 
         if (insert_fall) {
-            dr_insert_clean_call(drcontext, bb, NULL, (void *)taken_or_not,
-                                 false,
-                                 2,
-                                 OPND_CREATE_INTPTR(src),
-                                 OPND_CREATE_INTPTR(fall));
+            dr_insert_clean_call(drcontext, bb, NULL, (void *)taken_or_not, false, 2,
+                                 OPND_CREATE_INTPTR(src), OPND_CREATE_INTPTR(fall));
         }
         instrlist_preinsert(bb, NULL, INSTR_XL8
-                (INSTR_CREATE_jmp
+                (XINST_CREATE_jump
                  (drcontext,
                   opnd_create_pc(fall)), fall));
         instrlist_meta_preinsert(bb, NULL, label);
 
         if (insert_targ) {
-            dr_insert_clean_call(drcontext, bb, NULL, (void *)taken_or_not,
-                                 false,
-                                 2,
-                                 OPND_CREATE_INTPTR(src),
-                                 OPND_CREATE_INTPTR(targ));
+            dr_insert_clean_call(drcontext, bb, NULL, (void *)taken_or_not, false, 2,
+                                 OPND_CREATE_INTPTR(src), OPND_CREATE_INTPTR(targ));
         }
         instrlist_preinsert(bb, NULL, INSTR_XL8
-                (INSTR_CREATE_jmp
+                (XINST_CREATE_jump
                  (drcontext,
                   opnd_create_pc(targ)), targ));
     }
