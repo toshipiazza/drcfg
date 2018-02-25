@@ -3,7 +3,10 @@
 #include "cfg_impl.h"
 #include "app.h"
 #include "droption.h"
-
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <iomanip>
 #include <cstdint>
 
 static droption_t<bool> instrument_ret
@@ -14,6 +17,14 @@ static void
 at_cti(uintptr_t src, uintptr_t targ)
 {
     safe_insert(src, targ);
+    if (txt.get_value()) {
+//        if (output.get_value() == "") {
+            std::cout << "INDIRECT from " << std::hex << src << " to " << targ << std::endl;
+/*        } else {
+            std::ofstream ofs(output.get_value());
+            ofs << "INDIRECT from " << std::hex << src << " to " << targ << std::endl;
+        }
+*/    }
 }
 
 dr_emit_flags_t

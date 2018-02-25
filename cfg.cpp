@@ -18,18 +18,24 @@ static droption_t<bool> no_cti
 (DROPTION_SCOPE_CLIENT, "no_cti", false,
  "Don't count control transfer instructions", "");
 
-static droption_t<std::string> output
+droption_t<std::string> output
 (DROPTION_SCOPE_CLIENT, "output", "",
  "Output results to file", "");
+
+droption_t<bool> txt
+(DROPTION_SCOPE_CLIENT, "txt", false,
+ "Print text output while running instead of json at the end of the run - you will have to take care of the doubles youself", "");
 
 void
 dr_exit(void)
 {
-    if (output.get_value() == "")
-        std::cout << std::setw(2) << construct_json() << std::endl;
-    else {
-        std::ofstream ofs(output.get_value());
-        ofs << std::setw(2) << construct_json() << std::endl;
+    if (!txt.get_value()) {
+        if (output.get_value() == "")
+            std::cout << std::setw(2) << construct_json() << std::endl;
+        else {
+            std::ofstream ofs(output.get_value());
+            ofs << std::setw(2) << construct_json() << std::endl;
+        }
     }
     drmgr_exit();
 }
