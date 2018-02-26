@@ -19,7 +19,7 @@ at_cti(uintptr_t src, uintptr_t targ)
     safe_insert(src, targ);
     if (txt.get_value()) {
 //        if (output.get_value() == "") {
-            std::cout << "INDIRECT from " << std::hex << src << " to " << targ << std::endl;
+            std::cout << "INDIRECT jmp/call from " << std::hex << src << " to " << targ << std::endl;
 /*        } else {
             std::ofstream ofs(output.get_value());
             ofs << "INDIRECT from " << std::hex << src << " to " << targ << std::endl;
