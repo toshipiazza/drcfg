@@ -7,5 +7,11 @@ install: all
 	install build/libcfg.so /usr/local/lib/dynamorio
 	install drcfg.sh /usr/local/bin/
 
+save:	all
+	mkdir -p bin/`uname -m`
+	cp -v build/lib*.so bin/`uname -m`
+	-@svn add bin/`uname -m` 2> /dev/null
+	-@svn add bin/`uname -m`/*.so 2> /dev/null
+
 clean:
 	rm -rf build
