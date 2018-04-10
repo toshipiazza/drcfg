@@ -36,6 +36,7 @@ Options for `drcfg` are shown below:
  -no_cbr              [ false]  Don't count conditional branch instructions
  -no_cti              [ false]  Don't count control transfer instructions
  -output              [    ""]  Output results to file
+ -txt                 [ false]  output text instead of json, with many doubles
 ```
 
 # How to Build

@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.0)
 project (cfg)
 
-add_library(cfg SHARED cfg.cpp cfg_impl.cpp cbr.cpp cti.cpp app.cpp)
+add_library(cfg SHARED cfg.cpp cfg_impl.cpp app.cpp)
 find_package(DynamoRIO REQUIRED)
 configure_DynamoRIO_client(cfg)
 use_DynamoRIO_extension(cfg "drmgr")
