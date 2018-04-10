@@ -3,7 +3,6 @@ VER=32
 uname -m 2> /dev/null | grep -q 64 > /dev/null 2>&1 && VER=64
 HELP=yes
 for i in $*; do 
-  echo "\"$i\""
   test " $i" = " --" && HELP=
 done
 test -n "$HELP" && {
