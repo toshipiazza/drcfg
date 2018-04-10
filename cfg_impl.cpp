@@ -9,7 +9,7 @@ using nlohmann::json;
 
 static droption_t<bool> racy
 (DROPTION_SCOPE_CLIENT, "racy", false,
- "Perform racy hashtable insertion", "");
+ "unused option", "");
 
 static std::unordered_map<uintptr_t, std::unordered_set<uintptr_t>> cbr;
 static std::mutex mtx;
@@ -17,10 +17,12 @@ static std::mutex mtx;
 void
 safe_insert(uintptr_t src, uintptr_t trg)
 {
+/*
     if (!racy.get_value()) {
         std::lock_guard<std::mutex> g(mtx);
         cbr[src].insert(trg);
     } else
+*/
         cbr[src].insert(trg);
 }
 
@@ -42,10 +44,12 @@ construct_json_impl()
 json
 construct_json()
 {
+/*
     if (!racy.get_value()) {
         std::lock_guard<std::mutex> g(mtx);
         return construct_json_impl();
     } else
+*/
         return construct_json_impl();
 }
 
