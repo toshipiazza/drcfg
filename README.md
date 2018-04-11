@@ -45,14 +45,3 @@ $ mkdir -p build && cd build
 $ cmake .. -DDynamoRIO_DIR=<path/to/dr/cmake/>
 $ make -j4
 ```
-
-# TODO
-
-Listed in relative order of importance
-
-- [x] Implement cache flushing as per `cbr.c`, to remove instrumentation once a branch has
-      or has not been taken. This will hopefully speed up applications considerably.
-- [x] Optionally intercept only branches in main module (i.e. `-only_from_app`)
-- [x] Dump json to a file
-- [ ] Optionally dump YAML
-- [x] Optionally instrument return cti's

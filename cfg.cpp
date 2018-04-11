@@ -2,17 +2,21 @@
 #include "drmgr.h"
 #include "droption.h"
 #include "cfg_impl.h"
-#include "cti.h"
-#include "cbr.h"
+#include "mbr.h"
+#ifndef ARM
+# include "cbr.h"
+#endif
 #include "app.h"
 
 #include <iostream>
 #include <fstream>
 #include <iomanip>
 
+#ifndef ARM
 static droption_t<bool> no_cbr
 (DROPTION_SCOPE_CLIENT, "no_cbr", false,
  "Don't count conditional branch instructions", "");
+#endif
 
 static droption_t<bool> no_cti
 (DROPTION_SCOPE_CLIENT, "no_cti", false,
@@ -46,8 +50,10 @@ dr_client_main(client_id_t id, int argc, const char *argv[])
 
     app_init();
     drmgr_init();
+#ifndef ARM
     if (!no_cbr.get_value())
         drmgr_register_bb_instrumentation_event(NULL, cbr_event_app_instruction, NULL);
+#endif
     if (!no_cti.get_value())
         drmgr_register_bb_instrumentation_event(NULL, cti_event_app_instruction, NULL);
     dr_register_exit_event(dr_exit);
